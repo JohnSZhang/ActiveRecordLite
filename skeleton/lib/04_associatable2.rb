@@ -13,13 +13,14 @@ module Associatable
 
       through_table = through_options.table_name
       source_table = source_options.table_name
+      self_foreign_key_value = self.send(through_options.foreign_key)
+
       join_key = "#{source_table}.#{source_options.primary_key} = " +
       "#{through_table}.#{through_options.primary_key}"
-      where_line = "#{through_table}.#{through_options.primary_key} = " +
-      " #{self.send(through_options.foreign_key)}"
+      where_line = "#{through_table}.#{through_options.primary_key} = ? "
 
 
-      results = DBConnection.execute(<<-SQL)
+      results = DBConnection.execute(<<-SQL, self_foreign_key_value)
         SELECT
           #{source_table}.*
         FROM

@@ -30,7 +30,7 @@ describe 'Searchable' do
   end
 
   it '#where searches with multiple criteria' do
-    humans = Human.where(fname: 'Matt', house_id: 1)
+    humans = Human.where(fname: 'Matt').where(house_id: 1)
     expect(humans.length).to eq(1)
 
     human = humans[0]
