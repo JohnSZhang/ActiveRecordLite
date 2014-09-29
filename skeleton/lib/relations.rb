@@ -20,10 +20,12 @@ class Relation
   def joins(*params)
     if params.count = 1 && params[0].is_a?(String)
       self.params[:joins] << params[0]
-    elsif params.count = 1 && params.is_a?(Symbol) 
+    elsif params.count = 1 && params.is_a?(Symbol)
+      options = parent.assoc_options[params.first]
+
       #add join and find foreign keys and tables
     elsif params.all?{ |el| el.is_a?(Symbol) }
-      #add multiple joins on multiple keys and tables. 
+      #add multiple joins on multiple keys and tables.
     else
       self.argument_error
     end
@@ -65,12 +67,12 @@ class Relation
     self.params[:having] << params
     self
   end
-  
+
   def build_clause
     if not self.params[:having].nil && self.params[:group].nil?
-      raise "Need To Have A Having Clause" 
+      raise "Need To Have A Having Clause"
     end
-    
+
   end
 
   def build
