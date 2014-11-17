@@ -8,6 +8,8 @@ A partial implementation of Ruby on Rails' ActiveRecord Class.
 
 * Allows Definition of Joins Between Classes Via Associations
 
-* Implements Compound Associations has_on_through And has_many_through
+  * has_one, has_many, belongs_to
+
+* Implements Compound Associations has_one_through And has_many_through
 
 * Allows For Where Clauses
